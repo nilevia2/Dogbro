@@ -12,6 +12,6 @@ class BreedUseCase @Inject constructor(
     }
 
     suspend fun getBreedImages(breed: Breed): Result<List<String>> {
-        return breedRepository.getBreedImages(breed.breed, breed.subBreed)
+        return breedRepository.getBreedImages(breed.breed.lowercase(), breed.subBreed?.lowercase())
     }
 }

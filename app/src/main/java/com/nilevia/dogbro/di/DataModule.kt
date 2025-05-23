@@ -39,4 +39,7 @@ object DataModule {
         return retrofit.create(ApiService::class.java)
     }
 
+    @Provides
+    fun provideBreedDao(database: DogbroDatabase) = database.breedDao()
+
 } 

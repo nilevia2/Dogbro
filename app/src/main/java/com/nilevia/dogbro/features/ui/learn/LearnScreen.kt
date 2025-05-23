@@ -25,9 +25,11 @@ import com.nilevia.dogbro.features.repository.models.Breed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.nilevia.dogbro.features.ui.learn.uistate.LearnUiState
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxWidth
 
 @Composable
-fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
+fun LearnScreen(viewModel: LearnViewModel = hiltViewModel(), onBreedSelected: (Breed) -> Unit) {
     val uiState by viewModel.uiState.collectAsState()
     val listState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
@@ -63,7 +65,7 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
             ) {
                 items(breeds) { breed ->
                     Column {
-                        BreedItem(breed)
+                        BreedItem(breed) { onBreedSelected(breed) }
                         Divider(
                             Modifier.padding(horizontal = 24.dp),
                             color = Color.LightGray,
@@ -77,12 +79,12 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
 }
 
 @Composable
-fun BreedItem(breed: Breed) {
+fun BreedItem(breed: Breed, onClick: () -> Unit = {}) {
     val text = if (breed.subBreed != null) "${breed.breed} - ${breed.subBreed}" else breed.breed
     Text(
         text = text,
         style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier.padding(24.dp)
+        modifier = Modifier.padding(24.dp).fillMaxWidth().clickable { onClick() }
     )
 }
 
@@ -109,5 +111,13 @@ fun PreviewBreedList() {
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewLearnScreen() {
+    MaterialTheme {
+        LearnScreen(onBreedSelected = {})
     }
 } 

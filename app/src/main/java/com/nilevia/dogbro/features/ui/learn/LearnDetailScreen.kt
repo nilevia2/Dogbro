@@ -20,6 +20,11 @@ import coil.compose.rememberAsyncImagePainter
 import com.nilevia.dogbro.features.repository.models.Breed
 import com.nilevia.dogbro.features.ui.learn.uistate.LearnDetailUiState
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,35 +39,46 @@ fun LearnDetailScreen(
         viewModel.getBreedDetail(breed)
     }
 
-    when (detailUiState) {
-        is LearnDetailUiState.Loading -> Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
-        }
-        is LearnDetailUiState.Error -> Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text("Error loading images")
-        }
-        is LearnDetailUiState.Success -> {
-            val images = (detailUiState as LearnDetailUiState.Success).img
-            LazyColumn(
+    Column(modifier = Modifier.fillMaxSize()) {
+        TopAppBar(
+            title = { Text(text = breed.breed + (breed.subBreed?.let { " - $it" } ?: "")) },
+            navigationIcon = {
+                IconButton(onClick = onBack) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                }
+            }
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        when (detailUiState) {
+            is LearnDetailUiState.Loading -> Box(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                contentAlignment = Alignment.Center
             ) {
-                items(images) { imageUrl ->
-                    Image(
-                        painter = rememberAsyncImagePainter(imageUrl),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(300.dp),
-                        contentScale = ContentScale.Crop
-                    )
+                CircularProgressIndicator()
+            }
+            is LearnDetailUiState.Error -> Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Error loading images")
+            }
+            is LearnDetailUiState.Success -> {
+                val images = (detailUiState as LearnDetailUiState.Success).img
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(images) { imageUrl ->
+                        Image(
+                            painter = rememberAsyncImagePainter(imageUrl),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(300.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
                 }
             }
         }

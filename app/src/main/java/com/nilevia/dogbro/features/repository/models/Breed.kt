@@ -8,6 +8,6 @@ data class Breed(
 )
 
 fun BreedEntity.toBreed(): Breed = Breed(
-    breed = this.breed,
-    subBreed = this.subBreed
+    breed = this.breed.replaceFirstChar { it.uppercase() },
+    subBreed = this.subBreed?.replaceFirstChar { it.uppercase() }
 ) 

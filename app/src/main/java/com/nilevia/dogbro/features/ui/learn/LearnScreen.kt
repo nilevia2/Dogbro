@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nilevia.dogbro.features.repository.models.Breed
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
@@ -38,6 +41,7 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
         ) {
             CircularProgressIndicator()
         }
+
         is LearnUiState.Error -> Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -49,6 +53,7 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
                 }
             }
         }
+
         is LearnUiState.Success -> {
             val breeds = (uiState as LearnUiState.Success).breeds
             LazyColumn(
@@ -56,7 +61,14 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
                 state = listState
             ) {
                 items(breeds) { breed ->
-                    BreedItem(breed)
+                    Column {
+                        BreedItem(breed)
+                        Divider(
+                            Modifier.padding(horizontal = 24.dp),
+                            color = Color.LightGray,
+                            thickness = 0.5.dp
+                        )
+                    }
                 }
             }
         }
@@ -66,5 +78,35 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
 @Composable
 fun BreedItem(breed: Breed) {
     val text = if (breed.subBreed != null) "${breed.breed} - ${breed.subBreed}" else breed.breed
-    Text(text = text, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(24.dp))
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodyLarge,
+        modifier = Modifier.padding(24.dp)
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewBreedList() {
+    val sampleBreeds = listOf(
+        Breed("Labrador", null),
+        Breed("Poodle", "Miniature"),
+        Breed("Bulldog", null)
+    )
+    MaterialTheme {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(sampleBreeds) { breed ->
+                Column {
+                    BreedItem(breed)
+                    Divider(
+                        Modifier.padding(horizontal = 24.dp),
+                        color = Color.Gray,
+                        thickness = 0.5.dp
+                    )
+                }
+            }
+        }
+    }
 } 

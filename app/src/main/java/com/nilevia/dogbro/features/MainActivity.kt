@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
@@ -25,6 +26,7 @@ import com.nilevia.dogbro.features.ui.learn.LearnScreen
 import com.nilevia.dogbro.features.ui.quiz.QuizScreen
 import com.nilevia.dogbro.utils.themes.DogbroTheme
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.material3.Divider
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -41,7 +43,10 @@ class MainActivity : ComponentActivity() {
                 )
                 Scaffold(
                     topBar = {
-                        TopAppBar(title = { Text(text = "Dogbro") })
+                        Column {
+                            TopAppBar(title = { Text(text = "Dogbro") })
+                            Divider()
+                        }
                     },
                     bottomBar = {
                         NavigationBar {

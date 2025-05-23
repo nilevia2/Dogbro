@@ -5,16 +5,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,6 +25,9 @@ import com.nilevia.dogbro.features.repository.models.Breed
 @Composable
 fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
+    val listState = rememberSaveable(saver = LazyListState.Saver) {
+        LazyListState()
+    }
     LaunchedEffect(Unit) {
         viewModel.getBreeds()
     }
@@ -47,7 +51,10 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {
         }
         is LearnUiState.Success -> {
             val breeds = (uiState as LearnUiState.Success).breeds
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                state = listState
+            ) {
                 items(breeds) { breed ->
                     BreedItem(breed)
                 }

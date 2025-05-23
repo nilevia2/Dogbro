@@ -23,4 +23,12 @@ class BreedRepositoryImpl(
             entities.map { it.toBreed() }
         }
     }
+
+    override suspend fun getBreedImages(breed: String, subBreed: String?): Result<List<String>> = callApi {
+        if (subBreed != null) {
+            apiService.getSubBreedImages(breed, subBreed).data
+        } else {
+            apiService.getBreedImages(breed).data
+        }.orEmpty()
+    }
 }

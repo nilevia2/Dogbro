@@ -24,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.nilevia.dogbro.features.repository.models.Breed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.nilevia.dogbro.features.ui.learn.uistate.LearnUiState
 
 @Composable
 fun LearnScreen(viewModel: LearnViewModel = hiltViewModel()) {

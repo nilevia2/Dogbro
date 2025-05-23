@@ -4,25 +4,25 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nilevia.dogbro.features.domain.BreedUseCase
 import com.nilevia.dogbro.features.repository.models.Breed
+import com.nilevia.dogbro.features.ui.learn.uistate.LearnDetailUiState
+import com.nilevia.dogbro.features.ui.learn.uistate.LearnUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed interface LearnUiState {
-    data class Success(val breeds: List<Breed>) : LearnUiState
-    object Error : LearnUiState
-    object Loading : LearnUiState
-}
 
 @HiltViewModel
 class LearnViewModel @Inject constructor(
     private val breedUseCase: BreedUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<LearnUiState>(LearnUiState.Loading)
     val uiState: StateFlow<LearnUiState> = _uiState
+
+    private val _detailUiState = MutableStateFlow<LearnDetailUiState>(LearnDetailUiState.Loading)
+    val detailUiState: StateFlow<LearnDetailUiState> = _detailUiState
 
     fun getBreeds() {
         _uiState.value = LearnUiState.Loading
@@ -33,6 +33,19 @@ class LearnViewModel @Inject constructor(
                 }
                 .onFailure {
                     _uiState.value = LearnUiState.Error
+                }
+        }
+    }
+
+    fun getBreedDetail(breed: Breed) {
+        _detailUiState.value = LearnDetailUiState.Loading
+        viewModelScope.launch {
+            breedUseCase.getBreedImages(breed)
+                .onSuccess {
+                    _detailUiState.value = LearnDetailUiState.Success(it)
+                }
+                .onFailure {
+                    _detailUiState.value = LearnDetailUiState.Error
                 }
         }
     }

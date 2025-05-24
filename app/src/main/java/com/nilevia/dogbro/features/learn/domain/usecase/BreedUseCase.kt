@@ -1,5 +1,7 @@
-package com.nilevia.dogbro.features.learn.domain
+package com.nilevia.dogbro.features.learn.domain.usecase
 
+import com.nilevia.dogbro.features.learn.domain.BreedRepository
+import com.nilevia.dogbro.features.learn.domain.mapper.mapToUi
 import com.nilevia.dogbro.features.learn.domain.models.Breed
 import javax.inject.Inject
 
@@ -8,7 +10,7 @@ class BreedUseCase @Inject constructor(
 ) {
 
     suspend fun getBreeds(): Result<List<Breed>> {
-        return breedRepository.getBreeds()
+        return breedRepository.getBreeds().map { it.mapToUi() }
     }
 
     suspend fun getBreedImages(breed: Breed): Result<List<String>> {

@@ -11,6 +11,6 @@ interface QuizDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertResult(quiz: QuizEntity)
 
-    @Query("SELECT * FROM quiz")
+    @Query("SELECT * FROM quiz order by time desc")
     suspend fun getQuizResults(): List<QuizEntity>
 }

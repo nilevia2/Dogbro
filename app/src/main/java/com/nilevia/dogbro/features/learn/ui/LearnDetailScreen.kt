@@ -28,6 +28,9 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.ui.tooling.preview.Preview
 import com.nilevia.dogbro.features.learn.domain.mapper.getTitle
+import com.nilevia.dogbro.utils.components.ErrorComponent
+import com.nilevia.dogbro.utils.components.LoadingComponent
+import com.nilevia.dogbro.utils.components.SubScreen
 
 @Composable
 fun LearnDetailScreen(
@@ -49,7 +52,6 @@ fun LearnDetailScreen(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun LearnDetailScreenContent(
     breed: Breed,
@@ -57,38 +59,17 @@ private fun LearnDetailScreenContent(
     onBack: () -> Unit,
     onReload: () -> Unit = {}
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopAppBar(
-            title = { Text(text = breed.getTitle()) },
-            navigationIcon = {
-                IconButton(onClick = onBack) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                }
-            }
-        )
-        Spacer(modifier = Modifier.height(8.dp))
+
+    SubScreen(
+        breed.getTitle(),
+        onBack
+    ) {
         when (detailUiState) {
-            is LearnDetailUiState.Loading -> Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
+            is LearnDetailUiState.Loading -> LoadingComponent()
+            is LearnDetailUiState.Error -> ErrorComponent("Error loading images") {
+                onReload.invoke()
             }
-            is LearnDetailUiState.Error -> Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(
-                        text = "Error loading images",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.error
-                    )
-                    Button(onClick = onReload) {
-                        Text("Reload")
-                    }
-                }
-            }
+
             is LearnDetailUiState.Success -> {
                 val images = detailUiState.img
                 LazyColumn(

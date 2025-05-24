@@ -28,6 +28,8 @@ import com.nilevia.dogbro.features.learn.ui.uistate.LearnUiState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import com.nilevia.dogbro.features.learn.domain.mapper.getTitle
+import com.nilevia.dogbro.utils.components.ErrorComponent
+import com.nilevia.dogbro.utils.components.LoadingComponent
 
 @Composable
 fun LearnScreen(viewModel: LearnViewModel = hiltViewModel(), onBreedSelected: (Breed) -> Unit) {
@@ -39,25 +41,10 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel(), onBreedSelected: (B
         viewModel.getBreeds()
     }
     when (uiState) {
-        is LearnUiState.Loading -> Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
+        is LearnUiState.Loading -> LoadingComponent()
+        is LearnUiState.Error -> ErrorComponent("Error loading breeds") {
+            viewModel.getBreeds()
         }
-
-        is LearnUiState.Error -> Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("Error loading breeds")
-                Button(onClick = { viewModel.getBreeds() }) {
-                    Text("Retry")
-                }
-            }
-        }
-
         is LearnUiState.Success -> {
             val breeds = (uiState as LearnUiState.Success).breeds
             LazyColumn(

@@ -8,5 +8,5 @@ import com.nilevia.dogbro.features.learn.domain.models.Breed
  */
 interface BreedRepository {
     suspend fun getBreeds(): Result<List<BreedEntity>>
-    suspend fun getBreedImages(breed:String, subBreed: String? = null): Result<List<String>>
+    suspend fun getBreedImages(breed:String, subBreed: String? = null, total: Int): Result<List<String>>
 }

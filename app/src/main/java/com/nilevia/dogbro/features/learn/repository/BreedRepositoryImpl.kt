@@ -21,11 +21,11 @@ class BreedRepositoryImpl(
         }
     }
 
-    override suspend fun getBreedImages(breed: String, subBreed: String?): Result<List<String>> = safeCallIO {
+    override suspend fun getBreedImages(breed: String, subBreed: String?, total: Int): Result<List<String>> = safeCallIO {
         if (subBreed != null) {
-            apiService.getSubBreedImages(breed, subBreed).data
+            apiService.getSubBreedImages(breed, subBreed, total).data
         } else {
-            apiService.getBreedImages(breed).data
+            apiService.getBreedImages(breed, total).data
         }.orEmpty()
     }
 }

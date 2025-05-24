@@ -25,7 +25,7 @@ class QuizQuestionUseCase @Inject constructor(
                     .plus(correctBreed)
                     .shuffled()
                 Question(
-                    breed = correctBreed.breed,
+                    breed = correctBreed,
                     options = options.map { it.breed }
                 )
             }

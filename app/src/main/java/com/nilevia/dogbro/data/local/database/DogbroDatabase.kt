@@ -9,7 +9,7 @@ import com.nilevia.dogbro.data.local.entities.QuizEntity
 
 @Database(
     entities = [BreedEntity::class, QuizEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class DogbroDatabase : RoomDatabase() {

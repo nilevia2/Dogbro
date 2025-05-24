@@ -2,7 +2,7 @@ package com.nilevia.dogbro.features.learn.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nilevia.dogbro.features.learn.domain.BreedUseCase
+import com.nilevia.dogbro.features.learn.domain.usecase.BreedUseCase
 import com.nilevia.dogbro.features.learn.domain.models.Breed
 import com.nilevia.dogbro.features.learn.ui.uistate.LearnDetailUiState
 import com.nilevia.dogbro.features.learn.ui.uistate.LearnUiState

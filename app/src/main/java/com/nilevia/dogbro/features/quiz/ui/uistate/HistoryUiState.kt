@@ -11,13 +11,16 @@ sealed interface HistoryUiState {
 }
 
 sealed interface QuestionUiState {
-    data object Success : QuestionUiState
+    data object Start : QuestionUiState
     data object Loading : QuestionUiState
     data object Error : QuestionUiState
+    data class OnProgress(val no: Int) : QuestionUiState
+    data class Finish(val quizResult: QuizResult) : QuestionUiState
 }
 
 sealed interface QuestionDetailUiState {
     data class Success(val question: Question) : QuestionDetailUiState
     data object Loading : QuestionDetailUiState
     data object Error : QuestionDetailUiState
+    data class Result(val status: Boolean, val correctAnswer: String) : QuestionDetailUiState
 }

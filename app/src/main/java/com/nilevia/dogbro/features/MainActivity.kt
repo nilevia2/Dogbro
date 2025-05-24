@@ -29,6 +29,7 @@ import com.nilevia.dogbro.features.learn.domain.models.Breed
 import com.nilevia.dogbro.features.learn.ui.LearnDetailScreen
 import com.nilevia.dogbro.features.learn.ui.LearnScreen
 import com.nilevia.dogbro.features.quiz.ui.list.QuizHistoryScreen
+import com.nilevia.dogbro.features.quiz.ui.question.MainQuestionScreen
 import com.nilevia.dogbro.utils.route.AppScreen
 import com.nilevia.dogbro.utils.route.ROUTE_LEARN_DETAIL
 import com.nilevia.dogbro.utils.route.ScreenType
@@ -98,10 +99,10 @@ class MainActivity : ComponentActivity() {
                         composable(AppScreen.Learn.route) {
                             LearnScreen(
                                 onBreedSelected = { breed ->
-                                    val route = if (breed.subBreed != null) {
-                                        "$ROUTE_LEARN_DETAIL/${breed.breed}/${breed.subBreed}"
+                                    val route = if (breed.sub != null) {
+                                        "$ROUTE_LEARN_DETAIL/${breed.main}/${breed.sub}"
                                     } else {
-                                        "$ROUTE_LEARN_DETAIL/${breed.breed}/none"
+                                        "$ROUTE_LEARN_DETAIL/${breed.main}/none"
                                     }
                                     navController.navigate(route)
                                 }
@@ -131,6 +132,9 @@ class MainActivity : ComponentActivity() {
                         composable(AppScreen.Quiz.route) { QuizHistoryScreen {
                             navController.navigate(AppScreen.Questions.route)
                         } }
+                        composable(AppScreen.Questions.route) {
+                            MainQuestionScreen(onBack = { navController.popBackStack() })
+                        }
                     }
                 }
             }

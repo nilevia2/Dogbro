@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.nilevia.dogbro.features.learn.ui.uistate.LearnUiState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
+import com.nilevia.dogbro.features.learn.domain.mapper.getTitle
 
 @Composable
 fun LearnScreen(viewModel: LearnViewModel = hiltViewModel(), onBreedSelected: (Breed) -> Unit) {
@@ -80,7 +81,7 @@ fun LearnScreen(viewModel: LearnViewModel = hiltViewModel(), onBreedSelected: (B
 
 @Composable
 fun BreedItem(breed: Breed, onClick: () -> Unit = {}) {
-    val text = if (breed.subBreed != null) "${breed.breed} - ${breed.subBreed}" else breed.breed
+    val text = breed.getTitle()
     Text(
         text = text,
         style = MaterialTheme.typography.bodyLarge,
@@ -92,9 +93,9 @@ fun BreedItem(breed: Breed, onClick: () -> Unit = {}) {
 @Composable
 fun PreviewBreedList() {
     val sampleBreeds = listOf(
-        Breed("Labrador", null),
+        Breed("Labrador", null,),
         Breed("Poodle", "Miniature"),
-        Breed("Bulldog", null)
+        Breed("Bulldog", null, )
     )
     MaterialTheme {
         LazyColumn(

@@ -27,6 +27,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.ui.tooling.preview.Preview
+import com.nilevia.dogbro.features.learn.domain.mapper.getTitle
 
 @Composable
 fun LearnDetailScreen(
@@ -58,7 +59,7 @@ private fun LearnDetailScreenContent(
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
-            title = { Text(text = breed.breed + (breed.subBreed?.let { " - $it" } ?: "")) },
+            title = { Text(text = breed.getTitle()) },
             navigationIcon = {
                 IconButton(onClick = onBack) {
                     Icon(Icons.Filled.ArrowBack, contentDescription = "Back")

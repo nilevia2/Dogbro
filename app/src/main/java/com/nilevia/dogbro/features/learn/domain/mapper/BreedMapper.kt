@@ -6,8 +6,8 @@ import com.nilevia.dogbro.features.learn.domain.models.Breed
 fun List<BreedEntity>?.mapToUi(): List<Breed> {
     return this?.map { it ->
         Breed(
-            it.breed,
-            it.subBreed
+            main = it.breed,
+            sub = it.subBreed
         )
     } ?: emptyList()
 }
@@ -17,7 +17,7 @@ fun List<BreedEntity>?.mapToUi(): List<Breed> {
  */
 fun Breed.getTitle(): String{
     val subBreedFormatted =
-        if (subBreed.isNullOrBlank()) ""
-        else " - " + subBreed.replaceFirstChar { it.uppercase() }
-    return breed.replaceFirstChar { it.uppercase() } + subBreedFormatted
+        if (sub.isNullOrBlank()) ""
+        else " - " + sub.replaceFirstChar { it.uppercase() }
+    return main.replaceFirstChar { it.uppercase() } + subBreedFormatted
 }

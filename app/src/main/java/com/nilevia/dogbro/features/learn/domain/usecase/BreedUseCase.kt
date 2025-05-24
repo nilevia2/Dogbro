@@ -15,8 +15,8 @@ class BreedUseCase @Inject constructor(
 
     suspend fun getBreedImages(breed: Breed, total: Int = DEFAULT_IMAGE_COUNT): Result<List<String>> {
         return breedRepository.getBreedImages(
-            breed.breed.lowercase(),
-            breed.subBreed?.lowercase(),
+            breed.main.lowercase(),
+            breed.sub?.lowercase(),
             total
         )
     }

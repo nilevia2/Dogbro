@@ -5,8 +5,8 @@ import com.nilevia.dogbro.data.local.mapToEntities
 import com.nilevia.dogbro.data.remote.service.ApiService
 import com.nilevia.dogbro.data.remote.utils.callApi
 import com.nilevia.dogbro.features.learn.domain.BreedRepository
-import com.nilevia.dogbro.features.learn.repository.models.Breed
-import com.nilevia.dogbro.features.learn.repository.models.toBreed
+import com.nilevia.dogbro.features.learn.domain.models.Breed
+import com.nilevia.dogbro.features.learn.domain.models.toBreed
 
 class BreedRepositoryImpl(
     private val apiService: ApiService,

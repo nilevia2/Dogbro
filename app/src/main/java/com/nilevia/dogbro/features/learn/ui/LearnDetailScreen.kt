@@ -17,7 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
-import com.nilevia.dogbro.features.learn.repository.models.Breed
+import com.nilevia.dogbro.features.learn.domain.models.Breed
 import com.nilevia.dogbro.features.learn.ui.uistate.LearnDetailUiState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar

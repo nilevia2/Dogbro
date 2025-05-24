@@ -25,7 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.nilevia.dogbro.features.learn.repository.models.Breed
+import com.nilevia.dogbro.features.learn.domain.models.Breed
 import com.nilevia.dogbro.features.learn.ui.LearnDetailScreen
 import com.nilevia.dogbro.features.learn.ui.LearnScreen
 import com.nilevia.dogbro.features.quiz.QuizScreen

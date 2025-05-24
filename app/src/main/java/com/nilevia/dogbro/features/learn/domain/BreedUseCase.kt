@@ -1,6 +1,6 @@
 package com.nilevia.dogbro.features.learn.domain
 
-import com.nilevia.dogbro.features.learn.repository.models.Breed
+import com.nilevia.dogbro.features.learn.domain.models.Breed
 import javax.inject.Inject
 
 class BreedUseCase @Inject constructor(

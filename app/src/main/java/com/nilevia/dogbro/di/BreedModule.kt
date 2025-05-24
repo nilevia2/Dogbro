@@ -2,8 +2,8 @@ package com.nilevia.dogbro.di
 
 import com.nilevia.dogbro.data.local.dao.BreedDao
 import com.nilevia.dogbro.data.remote.service.ApiService
-import com.nilevia.dogbro.features.domain.BreedRepository
-import com.nilevia.dogbro.features.repository.BreedRepositoryImpl
+import com.nilevia.dogbro.features.learn.domain.BreedRepository
+import com.nilevia.dogbro.features.learn.repository.BreedRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

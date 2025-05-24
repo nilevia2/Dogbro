@@ -1,4 +1,4 @@
-package com.nilevia.dogbro.features.ui.learn
+package com.nilevia.dogbro.features.learn.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,10 +21,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.nilevia.dogbro.features.repository.models.Breed
+import com.nilevia.dogbro.features.learn.repository.models.Breed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.nilevia.dogbro.features.ui.learn.uistate.LearnUiState
+import com.nilevia.dogbro.features.learn.ui.uistate.LearnUiState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 

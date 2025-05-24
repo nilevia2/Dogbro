@@ -1,4 +1,4 @@
-package com.nilevia.dogbro.features.repository.models
+package com.nilevia.dogbro.features.learn.repository.models
 
 import com.nilevia.dogbro.data.local.entities.BreedEntity
 

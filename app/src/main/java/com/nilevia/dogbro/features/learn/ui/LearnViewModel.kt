@@ -1,11 +1,11 @@
-package com.nilevia.dogbro.features.ui.learn
+package com.nilevia.dogbro.features.learn.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nilevia.dogbro.features.domain.BreedUseCase
-import com.nilevia.dogbro.features.repository.models.Breed
-import com.nilevia.dogbro.features.ui.learn.uistate.LearnDetailUiState
-import com.nilevia.dogbro.features.ui.learn.uistate.LearnUiState
+import com.nilevia.dogbro.features.learn.domain.BreedUseCase
+import com.nilevia.dogbro.features.learn.repository.models.Breed
+import com.nilevia.dogbro.features.learn.ui.uistate.LearnDetailUiState
+import com.nilevia.dogbro.features.learn.ui.uistate.LearnUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,12 +1,12 @@
-package com.nilevia.dogbro.features.repository
+package com.nilevia.dogbro.features.learn.repository
 
 import com.nilevia.dogbro.data.local.dao.BreedDao
 import com.nilevia.dogbro.data.local.mapToEntities
 import com.nilevia.dogbro.data.remote.service.ApiService
 import com.nilevia.dogbro.data.remote.utils.callApi
-import com.nilevia.dogbro.features.domain.BreedRepository
-import com.nilevia.dogbro.features.repository.models.Breed
-import com.nilevia.dogbro.features.repository.models.toBreed
+import com.nilevia.dogbro.features.learn.domain.BreedRepository
+import com.nilevia.dogbro.features.learn.repository.models.Breed
+import com.nilevia.dogbro.features.learn.repository.models.toBreed
 
 class BreedRepositoryImpl(
     private val apiService: ApiService,

@@ -7,13 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -27,15 +25,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.nilevia.dogbro.features.repository.models.Breed
-import com.nilevia.dogbro.features.ui.learn.LearnDetailScreen
-import com.nilevia.dogbro.features.ui.learn.LearnScreen
-import com.nilevia.dogbro.features.ui.quiz.QuizScreen
+import com.nilevia.dogbro.features.learn.repository.models.Breed
+import com.nilevia.dogbro.features.learn.ui.LearnDetailScreen
+import com.nilevia.dogbro.features.learn.ui.LearnScreen
+import com.nilevia.dogbro.features.quiz.QuizScreen
+import com.nilevia.dogbro.utils.route.AppScreen
+import com.nilevia.dogbro.utils.route.ROUTE_LEARN_DETAIL
+import com.nilevia.dogbro.utils.route.ScreenType
 import com.nilevia.dogbro.utils.themes.DogbroTheme
 import dagger.hilt.android.AndroidEntryPoint
-import com.nilevia.dogbro.features.AppScreen
-import com.nilevia.dogbro.features.ScreenType
-import com.nilevia.dogbro.features.ROUTE_LEARN_DETAIL
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

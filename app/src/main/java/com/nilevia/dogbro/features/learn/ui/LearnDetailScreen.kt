@@ -1,4 +1,4 @@
-package com.nilevia.dogbro.features.ui.learn
+package com.nilevia.dogbro.features.learn.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -17,16 +17,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
-import com.nilevia.dogbro.features.repository.models.Breed
-import com.nilevia.dogbro.features.ui.learn.uistate.LearnDetailUiState
+import com.nilevia.dogbro.features.learn.repository.models.Breed
+import com.nilevia.dogbro.features.learn.ui.uistate.LearnDetailUiState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.ui.tooling.preview.Preview
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LearnDetailScreen(
     breed: Breed,
@@ -39,6 +40,22 @@ fun LearnDetailScreen(
         viewModel.getBreedDetail(breed)
     }
 
+    LearnDetailScreenContent(
+        breed = breed,
+        detailUiState = detailUiState,
+        onBack = onBack,
+        onReload = { viewModel.getBreedDetail(breed) }
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun LearnDetailScreenContent(
+    breed: Breed,
+    detailUiState: LearnDetailUiState,
+    onBack: () -> Unit,
+    onReload: () -> Unit = {}
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = { Text(text = breed.breed + (breed.subBreed?.let { " - $it" } ?: "")) },
@@ -60,10 +77,19 @@ fun LearnDetailScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Error loading images")
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        text = "Error loading images",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                    Button(onClick = onReload) {
+                        Text("Reload")
+                    }
+                }
             }
             is LearnDetailUiState.Success -> {
-                val images = (detailUiState as LearnDetailUiState.Success).img
+                val images = detailUiState.img
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(16.dp),
@@ -83,4 +109,21 @@ fun LearnDetailScreen(
             }
         }
     }
-} 
+}
+
+@Composable
+@Preview
+fun LearnDetailScreenPreview() {
+    val breed = Breed("Labrador", "Retriever")
+    val mockImages = listOf(
+        "https://images.dog.ceo/breeds/labrador/n02099712_5642.jpg",
+        "https://images.dog.ceo/breeds/labrador/n02099712_1234.jpg"
+    )
+    val mockUiState = LearnDetailUiState.Success(img = mockImages)
+    LearnDetailScreenContent(
+        breed = breed,
+        detailUiState = mockUiState,
+        onBack = {},
+        onReload = {}
+    )
+}

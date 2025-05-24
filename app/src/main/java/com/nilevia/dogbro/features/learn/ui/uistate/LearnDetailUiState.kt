@@ -1,4 +1,4 @@
-package com.nilevia.dogbro.features.ui.learn.uistate
+package com.nilevia.dogbro.features.learn.ui.uistate
 
 
 sealed interface LearnDetailUiState {

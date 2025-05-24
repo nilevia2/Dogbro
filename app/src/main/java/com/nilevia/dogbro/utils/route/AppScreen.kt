@@ -1,4 +1,4 @@
-package com.nilevia.dogbro.features
+package com.nilevia.dogbro.utils.route
 
 enum class ScreenType {
     MAIN_SCREEN, SUB_SCREEN

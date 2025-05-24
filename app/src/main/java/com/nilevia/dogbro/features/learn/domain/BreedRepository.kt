@@ -1,6 +1,6 @@
-package com.nilevia.dogbro.features.domain
+package com.nilevia.dogbro.features.learn.domain
 
-import com.nilevia.dogbro.features.repository.models.Breed
+import com.nilevia.dogbro.features.learn.repository.models.Breed
 
 interface BreedRepository {
     suspend fun getBreeds(): Result<List<Breed>>

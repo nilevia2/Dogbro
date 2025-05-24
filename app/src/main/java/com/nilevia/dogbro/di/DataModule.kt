@@ -42,4 +42,7 @@ object DataModule {
     @Provides
     fun provideBreedDao(database: DogbroDatabase) = database.breedDao()
 
+    @Provides
+    fun provideQuizDao(database: DogbroDatabase) = database.quizDao()
+
 } 

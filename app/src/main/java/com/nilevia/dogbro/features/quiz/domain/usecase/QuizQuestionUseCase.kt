@@ -6,7 +6,6 @@ import com.nilevia.dogbro.features.quiz.domain.models.Question
 import javax.inject.Inject
 
 class QuizQuestionUseCase @Inject constructor(
-    private val quizRepository: QuizRepository,
     private val breedUseCase: BreedUseCase
 ) {
 
@@ -30,18 +29,5 @@ class QuizQuestionUseCase @Inject constructor(
                 )
             }
         }
-    }
-
-    suspend fun calculateResult(
-        selectedAnswer: List<String>,
-        correctAnswer: List<String>
-    ): Int {
-        var correctCount = 0
-        for (i in correctAnswer.indices) {
-            if (selectedAnswer[i] == correctAnswer[i]) {
-                correctCount++
-            }
-        }
-        return correctCount
     }
 }

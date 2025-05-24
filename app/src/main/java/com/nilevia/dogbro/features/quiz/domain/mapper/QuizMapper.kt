@@ -6,9 +6,9 @@ import com.nilevia.dogbro.features.quiz.domain.models.QuizResult
 fun List<QuizEntity>?.mapToUi(): List<QuizResult> {
     return this?.map {
         QuizResult(
-            it.id,
             it.time,
-            it.score
+            it.score,
+            it.maxScore
         )
     }?: emptyList()
 }

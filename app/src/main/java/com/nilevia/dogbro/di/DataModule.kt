@@ -23,6 +23,7 @@ object DataModule {
     @Singleton
     fun provideDatabase(context: Application): DogbroDatabase {
         return Room.databaseBuilder(context, DogbroDatabase::class.java, databaseName)
+            .fallbackToDestructiveMigration() // no need migration for this development
             .build()
     }
 

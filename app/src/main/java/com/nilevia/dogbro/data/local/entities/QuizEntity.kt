@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class QuizEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val time: Long,
-    val score: Float,
+    val score: Int,
+    val maxScore: Int
 )

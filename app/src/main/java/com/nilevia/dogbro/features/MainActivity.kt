@@ -28,7 +28,7 @@ import androidx.navigation.navArgument
 import com.nilevia.dogbro.features.learn.domain.models.Breed
 import com.nilevia.dogbro.features.learn.ui.LearnDetailScreen
 import com.nilevia.dogbro.features.learn.ui.LearnScreen
-import com.nilevia.dogbro.features.quiz.QuizScreen
+import com.nilevia.dogbro.features.quiz.ui.list.QuizHistoryScreen
 import com.nilevia.dogbro.utils.route.AppScreen
 import com.nilevia.dogbro.utils.route.ROUTE_LEARN_DETAIL
 import com.nilevia.dogbro.utils.route.ScreenType
@@ -128,7 +128,9 @@ class MainActivity : ComponentActivity() {
                                 onBack = { navController.popBackStack() }
                             )
                         }
-                        composable(AppScreen.Quiz.route) { QuizScreen() }
+                        composable(AppScreen.Quiz.route) { QuizHistoryScreen {
+                            navController.navigate(AppScreen.Questions.route)
+                        } }
                     }
                 }
             }

@@ -8,7 +8,7 @@ Help you know more about dog breeds and practice. Know the image of each breed a
 
 | <img src="doc/1.png" width="120"/> | <img src="doc/2.png" width="120"/> | <img src="doc/3.png" width="120"/> | <img src="doc/4.png" width="120"/> |
 |:------------------------:|:--------------------------:|:--------------------------:|:------------------------:|
-| List of all breeds       | Image of selected breed    | Quiz history               | Start Quiz               |
+| List of all breeds       | Breed detail    | Quiz history               | Start Quiz               |
 
 | <img src="doc/5.png" width="120"/> | <img src="doc/7.png" width="120"/> | <img src="doc/6.png" width="120"/> | <img src="doc/8.png" width="120"/> |
 |:------------------------:|:--------------------------:|:--------------------------:|:------------------------:|
@@ -18,6 +18,7 @@ Help you know more about dog breeds and practice. Know the image of each breed a
 
 ### Support
 - Offline mode for breed list
+- Offline data for quiz history
 - Loading view for network/local operations
 - Error page with reload option
 - Empty state page
